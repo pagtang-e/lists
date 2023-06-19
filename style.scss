@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
+$primary-color: #222;
+$secondary: #333;
+$teritary: #eee;
+body{
+    background-color: $primary-color;
+    font-family: 'Comfortaa' ;
+    color: #eee;
+    
+}
+h1{
+    font-size: 96px;
+    margin-left: 5%;
+}
+main{
+    margin-inline: auto;
+    margin-top: -85px;
+    width: 90%;
+    height: 70vh;
+    background-color: $secondary;
+    border-radius: 15px;
+
+    box-shadow: 2px 2px 5px 1px $teritary;
+    -webkit-box-shadow: 2px 2px 5px 1px $teritary;
+    -moz-box-shadow: 2px 2px 5px 1px $teritary;
+
+}
