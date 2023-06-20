@@ -23,6 +23,33 @@ main {
   box-shadow: 2px 2px 10px 1px #eee;
   -webkit-box-shadow: 2px 2px 10px 1px #eee;
   -moz-box-shadow: 2px 2px 10px 1px #eee;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  overflow-y: scroll;
+  justify-content: center;
+  gap: 2rem;
+}
+
+main::-webkit-scrollbar {
+  width: 20px;
+}
+
+main::-webkit-scrollbar-track {
+  background-color: #333;
+  box-shadow: inset 0px 0px 5px 1px #eee;
+  -webkit-box-shadow: inset 0px 0px 5px 1px #eee;
+  -moz-box-shadow: inset 0px 0px 5px 1px #eee;
+  border-radius: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: #222;
+  box-shadow: inset 0px 0px 5px 0px #eee;
+  -webkit-box-shadow: inset 0px 0px 5px 0px #eee;
+  -moz-box-shadow: inset 0px 5px 0px #eee;
+  border-radius: 20px;
 }
 
 .cross {
@@ -36,11 +63,11 @@ main {
 }
 
 .cross.two {
-  transform: translateX(-50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .cross.one {
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 p {
@@ -74,7 +101,7 @@ article {
 
 textarea {
   resize: none;
-  height: 1.7rem;
+  height: 1.5rem;
   text-align: justify;
 }
 
@@ -115,7 +142,7 @@ li > textarea {
 }
 
 li > button {
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 
 .bin {
@@ -141,6 +168,15 @@ textarea:focus, input:focus {
   outline: none;
 }
 
-textarea:focus + button {
-  visibility: visible;
+.AddArticleDiv .cross {
+  height: 200px;
+  width: 40px;
+  top: 50%;
+}
+
+.AddArticleDiv {
+  position: relative;
+  height: 200px;
+  width: 200px;
+  align-self: center;
 }/*# sourceMappingURL=style.css.map */
