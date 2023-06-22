@@ -5,12 +5,15 @@ let liDeleteBtn;
 let articleDeleteBtn;
 let liAddBtn;
 let AddArticleDivCreated;
+let articles;
+
+
 
 
 add_first.addEventListener("click", ()=>{
     add_first.style.display='none';
 add_List();
-addNewArticle()
+addNewArticleBtn()
 
 });
 
@@ -73,6 +76,11 @@ ArticleDelete();
 liAdd()
 textareaResize();
 LiDelete();
+articles = document.getElementsByTagName('article');
+
+TextareaValues()
+NamesOfArticles()
+
 
 }
 
@@ -96,8 +104,11 @@ let latest = liDeleteBtn.slice(-1)[0];
 
    latest.parentElement.remove();
     
+   TextareaValues()
+   console.log('dhjfjdj');
     
   })
+  
 }
 function ArticleDelete(){
   let latest = articleDeleteBtn.slice(-1)[0];
@@ -105,8 +116,13 @@ function ArticleDelete(){
      
   
       latest.parentElement.parentElement.remove();
+      articles = document.getElementsByTagName('article');
+      NamesOfArticles()
+      TextareaValues()
+      
       
     })
+    
 }
   
 function liAdd(){
@@ -117,7 +133,6 @@ function liAdd(){
   latest.addEventListener('click', ()=>{
       
      
-    
       let li = document.createElement('li');
       latest.parentElement.previousElementSibling.append(li)
      
@@ -133,13 +148,15 @@ function liAdd(){
      liDeleteBtn = document.querySelectorAll('.liDel')
      liDeleteBtn = Array.from(liDeleteBtn)
      LiDelete();
+     TextareaValues()
+    
   
   })
     
     }
 
 
-function addNewArticle(){
+function addNewArticleBtn(){
 
   let AddArticleDiv = document.createElement('div');
 AddArticleDiv.setAttribute('class', 'AddArticleDiv');
@@ -160,3 +177,38 @@ AddArticlePlusTwo.setAttribute('class','cross two AddArticle');
 AddArticleDiv.append(AddArticlePlusTwo);
 
 }
+
+function TextareaValues(){
+textAreas = Array.from(document.getElementsByTagName('textarea'));
+console.log(textAreas);
+
+textAreas.forEach((element, index)=> {
+textAreas[index]= element.value;
+
+  element.addEventListener('input',()=>{
+    
+    textAreas[index]= element.value;
+  console.log(textAreas);
+  
+  })
+ ;
+},);
+console.log(textAreas);
+}
+
+function NamesOfArticles(){
+names = Array.from(document.getElementsByTagName('input'));
+console.log(names);
+names.forEach((element, index)=> {
+  names[index]= element.value;
+  console.log(names);
+    element.addEventListener('input',()=>{
+      console.log('fdfsd');
+      names[index]= element.value;
+      
+      
+    });
+  },)
+  
+  ;}
+
