@@ -9,12 +9,63 @@ let articles;
 let textAreas=[];
 let TextAreasValues = [];
 let inputs =[];
-let inputsValues=[];
+let inputsValues= [];
+let textareasAmountVariable=[];
+
+
+if(localStorage.getItem('textareasAmount') != null){
+  
+  add_first.style.display='none';
+
+  let TextAreasValuesInitial = JSON.parse(localStorage.getItem('TextAreasValues'));
+  let inputsValuesInitial = JSON.parse(localStorage.getItem('inputsValues'));
+  let textareasAmountVariableInitial =JSON.parse(localStorage.getItem('textareasAmount'))
+  
+  textareasAmountVariableInitial.forEach((element, index)=>{
+
+    add_List();
+    articles[index].querySelector('input').value = inputsValuesInitial[index];
+    inputValues()
+    
+    for(let i = 0; i<element; i++){
+   
+      let li = document.createElement('li');
+      articles[index].querySelector('ul').append(li)
+     
+     let textarea = document.createElement('textarea');
+     textarea.setAttribute('placeholder','wpisz zadanie')
+     li.append(textarea);
+     textareaResize();
+     TextareaValues()
+     textAreas = Array.from(document.getElementsByTagName('textarea'));
+     tx = Array.from(document.getElementsByTagName("textarea"));
+     textareasAmount()
+     
+     let bin_btn = document.createElement('button')
+     bin_btn.setAttribute('class','bin liDel')
+     li.append(bin_btn);
+   
+     LiDelete();
+     liDeleteBtn = document.querySelectorAll('.liDel')
+     liDeleteBtn = Array.from(liDeleteBtn)
+
+    }
+    
+  })
+  textAreas.forEach((element , index)=>{
+
+textAreas[index].value = TextAreasValuesInitial[index];
+TextareaValues()
+
+  })
+  addNewArticleBtn()
+}
 
 add_first.addEventListener("click", ()=>{
     add_first.style.display='none';
-add_List();
+    add_List();
 addNewArticleBtn()
+firstLi(articles[0].querySelector('ul'))
 
 });
 
@@ -38,23 +89,7 @@ inputs = Array.from(document.getElementsByTagName('input'));
 let ul = document.createElement('ul')
 article.append(ul);
 
-let li = document.createElement('li');
-ul.append(li)
 
-let textarea = document.createElement('textarea');
-textarea.setAttribute('placeholder','wpisz zadanie')
-li.append(textarea);
-textareaResize();
-TextareaValues()
-textAreas = Array.from(document.getElementsByTagName('textarea'));
-tx = Array.from(document.getElementsByTagName("textarea"));
-
-let bin_btn = document.createElement('button')
-bin_btn.setAttribute('class','bin liDel')
-li.append(bin_btn)
-LiDelete();
-liDeleteBtn = document.querySelectorAll('.liDel')
-liDeleteBtn = Array.from(liDeleteBtn)
 
 
 
@@ -91,6 +126,27 @@ articles = document.getElementsByTagName('article');
 
 textareasAmount()
 
+}
+function firstLi(ul){
+  let li = document.createElement('li');
+ul.append(li)
+
+let textarea = document.createElement('textarea');
+textarea.setAttribute('placeholder','wpisz zadanie')
+li.append(textarea);
+textareaResize();
+TextareaValues()
+textAreas = Array.from(document.getElementsByTagName('textarea'));
+tx = Array.from(document.getElementsByTagName("textarea"));
+
+let bin_btn = document.createElement('button')
+bin_btn.setAttribute('class','bin liDel')
+li.append(bin_btn)
+LiDelete();
+liDeleteBtn = document.querySelectorAll('.liDel')
+liDeleteBtn = Array.from(liDeleteBtn)
+
+textareasAmount()
 }
 
 function textareaResize(){
@@ -184,6 +240,7 @@ main.append(AddArticleDiv);
 AddArticleDivCreated = document.querySelector('.AddArticleDiv');
 AddArticleDivCreated.addEventListener('click', ()=>{
   add_List();
+  firstLi(articles.at(-1).querySelector('ul'))
   main.append(AddArticleDivCreated)
 
 })
@@ -218,11 +275,11 @@ function TextareaValues(){
       TextAreasValues[index] = element.value;
           
           TextAreasValues = TextAreasValues.slice(0, textAreas.length);
-          
+          localStorage.setItem('TextAreasValues', JSON.stringify(TextAreasValues))
         
     }})
  
-     
+    localStorage.setItem('TextAreasValues', JSON.stringify(TextAreasValues))    
 
   }
   function inputValues(){
@@ -243,22 +300,25 @@ function TextareaValues(){
         inputsValues[index] = element.value;
             
             inputsValues = inputsValues.slice(0, inputs.length);
-          
+            localStorage.setItem('inputsValues', JSON.stringify(inputsValues))
           
       }})
    
-      
+      localStorage.setItem('inputsValues', JSON.stringify(inputsValues))
           
     }
-    let textareasAmountVariable=[];
+    
   function textareasAmount(){
 articles = Array.from(articles);
+console.log(articles);
     articles.forEach((element, index)=>{
 textareasAmountVariable[index]= element.getElementsByTagName('li').length;
 
-
     }) 
-  
+   
+    textareasAmountVariable = textareasAmountVariable.slice(0, articles.length)
+console.log(textareasAmountVariable);
+    localStorage.setItem('textareasAmount', JSON.stringify(textareasAmountVariable))
 
   }
 
